@@ -6,51 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.5.0.min.js"></script>
-    <script src="js/fuckadblock.js"></script>
+    <script src="js/detect.js"></script>
     <title>catch the ad(몰라)</title>
-    <script>
-        $(document).ready(function(){
-            //애드블럭 안쓰는 유저.
-        function adBlockNotDetected() {
-            console.log('AdBlock is not enabled');
-        }
-        function adBlockDetected() {
-            console.log('AdBlock is enabled');
-            $('.adsbanner_message').show();
-        }
-        
-        // We look at whether FuckAdBlock already exists.
-        if(typeof fuckAdBlock !== 'undefined' || typeof FuckAdBlock !== 'undefined') {
-            // If this is the case, it means that something tries to usurp are identity
-            // So, considering that it is a detection
-            adBlockDetected();
-        } else {
-            // Otherwise, you import the script FuckAdBlock
-            var importFAB = document.createElement('script');
-            importFAB.onload = function() {
-                // If all goes well, we configure FuckAdBlock
-                fuckAdBlock.onDetected(adBlockDetected)
-                fuckAdBlock.onNotDetected(adBlockNotDetected);
-            };
-            importFAB.onerror = function() {
-                // If the script does not load (blocked, integrity error, ...)
-                // Then a detection is triggered
-                adBlockDetected(); 
-            };
-            importFAB.integrity = 'sha256-xjwKUY/NgkPjZZBOtOxRYtK20GaqTwUCf7WYCJ1z69w=';
-            importFAB.crossOrigin = 'anonymous';
-            importFAB.src = 'https://cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js';
-            document.head.appendChild(importFAB);
-        }
-        });
-    </script>
 </head>
 <body>
     <div id="adblocktestdiv">
         <div class="adbanner"></div>
         <div class="adsbanner_message">
-            애드블락쓰면 경고문 나온다1
+            애드블락쓰면 경고문 나온다
         </div>
     </div>
+    <script>
+        //fadblock, detectJS 둘다 안된다 일단 후퇴
+        $(function(){
+            // 얘가 어디서 발동되는지 모르겠음
+            function adBlockNotDetected() {
+                console.log('AdBlock is not enabled');
+            }
+
+            function adBlockDetected() {
+                console.log('AdBlock is enabled');
+                $('.adsbanner_message').show();
+            }
+            
+            // We look at whether FuckAdBlock already exists.
+            if(typeof fuckAdBlock !== 'undefined' || typeof FuckAdBlock !== 'undefined') {
+                // If this is the case, it means that something tries to usurp are identity
+                // So, considering that it is a detection
+                adBlockDetected();
+            } else {
+                // Otherwise, you import the script FuckAdBlock
+                var importFAB = document.createElement('script');
+                importFAB.onload = function() {
+                    // If all goes well, we configure FuckAdBlock
+                    fuckAdBlock.onDetected(adBlockDetected)
+                    fuckAdBlock.onNotDetected(adBlockNotDetected);
+                };
+                importFAB.onerror = function() {
+                    // If the script does not load (blocked, integrity error, ...)
+                    // Then a detection is triggered
+                    adBlockDetected(); 
+                };
+             
+            }
+        });
+
+    </script>
 </body>
 </html>
