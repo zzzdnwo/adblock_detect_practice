@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,32 @@
     <script src="js/jquery-3.5.0.min.js"></script>
     <script src="js/detect.js"></script>
     <title>catch the ad(몰라)</title>
-</head>
-<body>
-    <div id="adblocktestdiv">
-        <div class="adbanner"></div>
-        <div class="adsbanner_message">
-            애드블락쓰면 경고문 나온다
-        </div>
-    </div>
     <script>
         //fadblock, detectJS 둘다 안된다 일단 후퇴
-        $(function(){
+
+        $(document).ready(function(){
+            
+            // 흐음...
+            if($('.ad_container, .ad_content, .ad_global_header, .ad_header, .ad_img, .ad_item, .ad_l, .ad_links, .ad_main, .ad_r, .ad_spot, .ad_title, .ad_top, .ad_unit, .ad_wrap, .ad_wrapper, .adace-slot, .adace-slot-wrapper, .adarea, .adban, .adbanner, .adbar, .adbox2, .adcenter, .adclass, .adcomment, .adcont, .addarea, .addiv, .adholder2, .adlink, .adlist, .admain, .adpic, .adrect, .adright, .ads-ad, .ads-area, .ads-banner, .ads-bg, .ads-box, .ads-content, .ads-fr, .ads-header, .ads-iframe, .ads-image, .ads-inline, .ads-item, .ads-link, .ads-list').css('display') === 'none'){
+                $('.adsbanner_message').show();
+            };
+            /*
+            let target = document.querySelector('.adbanner');
+
+            let observer = new MutationObserver(()=>{
+                alert('1');
+                $('.adsbanner_message').show();
+            });
+
+            let options = {
+                attributes: true,
+                childList: true,
+                CharacterData: true
+            }
+
+            observer.observe(target,options);
+            */
+            /*
             // 얘가 어디서 발동되는지 모르겠음
             function adBlockNotDetected() {
                 console.log('AdBlock is not enabled');
@@ -49,8 +64,17 @@
                 };
              
             }
+            */
         });
 
     </script>
+</head>
+<body>
+    <div id="adblocktestdiv">
+        <div class="adbanner"></div>
+        <div class="adsbanner_message">
+            애드블락쓰면 경고문 나온다
+        </div>
+    </div>
 </body>
 </html>
